@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -z "$@" ]; then
+    docker compose exec --user=1000 php bash
+else
+    docker compose exec --user=1000 php bash -c "$@"
+fi
