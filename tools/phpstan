@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker compose exec --user=1000 php bash -c "vendor/bin/phpstan analyze"
