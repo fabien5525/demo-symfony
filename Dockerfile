@@ -1,3 +1,4 @@
+# hadolint global ignore=DL3008, DL3016, DL4006
 #syntax=docker/dockerfile:1
 
 # Versions
@@ -46,7 +47,7 @@ RUN install-php-extensions pdo_mysql
 
 ###> NodeJS / Yarn ###
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs \
+    apt-get install -y --no-install-recommends nodejs \
     build-essential && \
     npm install --global yarn
 ###< NodeJS / Yarn ###
