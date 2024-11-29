@@ -1,0 +1,38 @@
+<h1 class="text-3xl font-extrabold dark:text-white">{{ 'Errors'|trans }}</h1>
+{% if logCommand.errors %}
+    <p class="mb-3 text-lg text-gray-500 md:text-xl dark:text-gray-400">
+        {{ 'The following errors occurred:'|trans }}
+    </p>
+    <div class="p-6 bg-gray-100 rounded-lg shadow-lg dark:bg-gray-800">
+        <h2 class="text-xl font-bold text-gray-800 mb-4 dark:text-gray-100">{{ 'Command Execution Result'|trans }}</h2>
+
+        {% for error in logCommand.errors %}
+            <div class="mb-6 text-gray-500 dark:text-gray-400">
+                <p><span class="font-semibold text-gray-700 dark:text-gray-200">{{ 'Message'|trans }} :</span> {{ error.message }}</p>
+                <p><span class="font-semibold text-gray-700 dark:text-gray-200">{{ 'Code'|trans }} :</span> {{ error.code }}</p>
+                <p><span class="font-semibold text-gray-700 dark:text-gray-200">{{ 'File'|trans }} :</span> {{ error.file }}</p>
+                <p><span class="font-semibold text-gray-700 dark:text-gray-200">{{ 'Line'|trans }} :</span> {{ error.line }}</p>
+            </div>
+
+            <h3 class="text-lg font-semibold text-gray-800 mb-2 dark:text-gray-100">{{ 'Trace'|trans }}</h3>
+            <div class="bg-white border rounded-lg p-4 dark:bg-gray-700 dark:border-gray-600">
+                <ul class="space-y-4">
+                    {% for trace in error.trace %}
+                        <li class="p-3 border-b last:border-none dark:border-gray-600 text-gray-500 dark:text-gray-400">
+                            <p><span class="font-semibold dark:text-gray-200">{{ 'File'|trans }} :</span> {{ trace.file }}</p>
+                            <p><span class="font-semibold dark:text-gray-200">{{ 'Line'|trans }} :</span> {{ trace.line }}</p>
+                            <p><span class="font-semibold dark:text-gray-200">{{ 'Function'|trans }} :</span> {{ trace.function }}</p>
+                            {% if trace.class is defined %}
+                                <p><span class="font-semibold dark:text-gray-200">{{ 'Class'|trans }} :</span> {{ trace.class }}</p>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="mb-3 text-lg text-gray-500 md:text-xl dark:text-gray-400">
+        {{ 'No errors occurred.'|trans }}
+    </p>
+{% endif %}

@@ -1,3 +1,7 @@
+includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+
 parameters:
     level: 8
     tmpDir: var/cache/phpstan
@@ -7,3 +11,7 @@ parameters:
         - public
         - config
         - bin
+
+    ignoreErrors:
+    		- identifier: missingType.iterableValue
+

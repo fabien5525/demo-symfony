@@ -1,0 +1,9 @@
+{% set route = app.request.attributes.get('_route') %}
+{% set routes = {
+    'dashboard': {
+        'label': 'Commands'|trans,
+        'active': route starts with 'admin_dashboard_command_index',
+        'route': path('admin_dashboard_command_index')
+    },
+} %}
+<twig:Tabs routes="{{ routes }}" />
